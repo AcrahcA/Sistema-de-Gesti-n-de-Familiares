@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Perfil - DataFamily</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+    <div class="contenedor_inicio">
+        <h2>Mi Perfil</h2>
+
+        <p class="error" id="msg-error" style="display:none">Error al guardar los datos.</p>
+        <p class="exito" id="msg-exito" style="display:none">Perfil actualizado correctamente.</p>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error')) document.getElementById('msg-error').style.display = 'block';
+            if (params.get('exito')) document.getElementById('msg-exito').style.display = 'block';
+        </script>
+
+        <form action="../acciones/perfil_action.php" method="POST">
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required>
+
+            <label>DNI</label>
+            <input type="text" name="dni" pattern="[0-9]{7,8}" title="El DNI debe ser numérico" required>
+
+            <label>Teléfono</label>
+            <input type="text" name="telefono" pattern="[0-9]+" title="El teléfono debe ser numérico" required>
+
+            <button type="submit">Guardar</button>
+        </form>
+
+        <nav>
+            <a href="familiares.html">Mis Familiares</a> |
+            <a href="../acciones/logout.php">Cerrar Sesión</a>
+        </nav>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Familiares - DataFamily</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+    <div class="contenedor_inicio">
+        <h2>Mis Familiares</h2>
+
+        <p class="error" id="msg-error" style="display:none">Error al guardar los datos.</p>
+        <p class="exito" id="msg-exito" style="display:none">Familiar agregado correctamente.</p>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error')) document.getElementById('msg-error').style.display = 'block';
+            if (params.get('exito')) document.getElementById('msg-exito').style.display = 'block';
+        </script>
+
+        <form action="../acciones/familiar_action.php" method="POST">
+            <label>Nombre</label>
+            <input type="text" name="nombre" required>
+
+            <label>Parentesco</label>
+            <select name="parentesco_id" required>
+                <option value="">-- Seleccioná --</option>
+            </select>
+
+            <label>Edad</label>
+            <input type="number" name="edad" min="0" max="120" required>
+
+            <button type="submit">Agregar Familiar</button>
+        </form>
+
+        <nav>
+            <a href="perfil.html">Mi Perfil</a> |
+            <a href="../acciones/logout.php">Cerrar Sesión</a>
+        </nav>
+    </div>
+
+    <script>
+        // Cargar opciones de parentesco desde la base de datos
+        fetch('../acciones/obtener_parentesco.php')
+            .then(res => res.json())
+            .then(data => {
+                const select = document.querySelector('select[name="parentesco_id"]');
+                data.forEach(p => {
+                    const option = document.createElement('option');
+                    option.value = p.id;
+                    option.textContent = p.descripcion;
+                    select.appendChild(option);
+                });
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - DataFamily</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+
+    <div class="contenedor_inicio">
+        <h2>Crear Cuenta</h2>
+
+        <p class="error" id="error-existe" style="display:none">El nombre de usuario ya existe.</p>
+        <p class="error" id="error-campos" style="display:none">Todos los campos son obligatorios.</p>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error') == 1) document.getElementById('error-existe').style.display = 'block';
+            if (params.get('error') == 2) document.getElementById('error-campos').style.display = 'block';
+        </script>
+
+        <form action="../acciones/registro_action.php" method="POST">
+            <label>Usuario</label>
+            <input type="text" name="usuario" required>
+
+            <label>Contraseña</label>
+            <input type="password" name="contraseña" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+
+        <p>¿Ya tenés cuenta? <a href="login.html">Iniciá sesión</a></p>
+    </div>
+
+</body>
+</html>

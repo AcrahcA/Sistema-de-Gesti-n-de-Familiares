@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - DataFamily</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+
+    <div class="contenedor_inicio">
+        <h2>Iniciar Sesión</h2>
+
+        <p class="error" id="msg-error" style="display:none">Usuario o contraseña incorrectos.</p>
+        <p class="exito" id="msg-exito" style="display:none">Registro exitoso. Podés iniciar sesión.</p>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error')) document.getElementById('msg-error').style.display = 'block';
+            if (params.get('registro')) document.getElementById('msg-exito').style.display = 'block';
+        </script>
+
+        <form action="../acciones/login_action.php" method="POST">
+            <label>Usuario</label>
+            <input type="text" name="usuario" required>
+
+            <label>Contraseña</label>
+            <input type="password" name="contraseña" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+
+        <p>¿No tenés cuenta? <a href="registro.html">Registrate</a></p>
+    </div>
+
+</body>
+</html>

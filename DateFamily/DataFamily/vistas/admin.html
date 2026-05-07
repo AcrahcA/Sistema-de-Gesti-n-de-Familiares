@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - DataFamily</title>
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+
+<div class="contenedor_admin">
+    <h2>Panel Administrador</h2>
+    <h3>Lista de Usuarios y Familiares</h3>
+
+    <div class="tabla-wrapper">
+        <table id="tabla-usuarios">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Familiar</th>
+                    <th>Parentesco</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+
+            <tbody id="cuerpo-tabla">
+                <tr>
+                    <td colspan="6">Cargando...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav>
+        <a href="../acciones/logout.php">Cerrar Sesión</a>
+    </nav>
+</div>
+
+<script>
+fetch('../acciones/obtener_usuarios.php')
+    .then(res => res.json())
+    .then(data => {
+        const tbody = document.getElementById('cuerpo-tabla');
+        tbody.innerHTML = '';
+
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6">No hay usuarios registrados.</td></tr>';
+            return;
+        }
+
+        data.forEach(u => {
+
+            if (u.familiares.length === 0) {
+                tbody.innerHTML += `
+                <tr>
+                    <td>${u.usuario}</td>
+                    <td>${u.nombre || 'Sin datos'}</td>
+                    <td>${u.dni || 'Sin datos'}</td>
+                    <td colspan="3">Sin familiares</td>
+                </tr>`;
+            } else {
+
+                u.familiares.forEach((f, index) => {
+
+                    if (index === 0) {
+                        tbody.innerHTML += `
+                        <tr>
+                            <td rowspan="${u.familiares.length}">${u.usuario}</td>
+                            <td rowspan="${u.familiares.length}">${u.nombre || 'Sin datos'}</td>
+                            <td rowspan="${u.familiares.length}">${u.dni || 'Sin datos'}</td>
+                            <td>${f.nombre}</td>
+                            <td>${f.parentesco}</td>
+                            <td>${f.edad} años</td>
+                        </tr>`;
+                    } else {
+                        tbody.innerHTML += `
+                        <tr>
+                            <td>${f.nombre}</td>
+                            <td>${f.parentesco}</td>
+                            <td>${f.edad} años</td>
+                        </tr>`;
+                    }
+
+                });
+            }
+        });
+    })
+    .catch(error => {
+        document.getElementById('cuerpo-tabla').innerHTML =
+            '<tr><td colspan="6">Error al cargar datos</td></tr>';
+        console.error(error);
+    });
+</script>
+
+</body>
+</html>

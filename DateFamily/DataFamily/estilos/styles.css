@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #a0a8b1    );
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.contenedor_inicio {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    width: 90%;
+    max-width: 500px;
+}
+
+/* PANEL ADMIN */
+.contenedor_admin {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+    width: 95%;
+    max-width: 1400px;
+    margin: 40px auto;
+}
+
+/* TITULOS */
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 26px;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+}
+
+/* FORMULARIOS */
+label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 14px;
+    color: #555;
+    font-size: 14px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+/* BOTONES */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #939aa0e3, #939aa0e3);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* MENSAJES */
+.error {
+    background-color: #fdecea;
+    color: #c0392b;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.exito {
+    background-color: #eafaf1;
+    color: #27ae60;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+/* NAV */
+nav {
+    margin-top: 25px;
+    text-align: center;
+}
+
+nav a {
+    background-color: #939aa0e3;
+    color: rgb(0, 0, 0);
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #e2d7d6;
+}
+
+/* TABLA MODERNA */
+.tabla-wrapper {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+th {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* CELDAS */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+/* HOVER */
+tr:hover {
+    background-color: #f4f8ff;
+}
+
+/* FILAS ALTERNAS */
+tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .contenedor_inicio,
+    .contenedor_admin {
+        padding: 16px;
+    }
+
+    table {
+        min-width: 600px;
+    }
+}
